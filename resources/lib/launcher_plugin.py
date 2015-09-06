@@ -1143,12 +1143,11 @@ class Main:
                     self.launchers[launcherID]["genre"] = keyboard.getText()
                     self._save_launchers()
             if (type2 == 6 ):
-                # Import of the launcher plot
-                text_file = xbmcgui.Dialog().browse(1,__language__( 30080 ),"files",".txt|.dat", False, False, self.launchers[launcherID]["application"])
-                if ( os.path.isfile(text_file) == True ):
-                    text_plot = open(text_file, 'r')
-                    self.launchers[launcherID]["plot"] = text_plot.read()
-                    text_plot.close()
+                # Edit of the launcher plot
+                keyboard = xbmc.Keyboard(self.launchers[launcherID]["plot"], __language__( 30080 ))
+                keyboard.doModal()
+                if (keyboard.isConfirmed()):
+                    self.launchers[launcherID]["plot"] = keyboard.getText()
                     self._save_launchers()
             if (type2 == 7 ):
                 # Edition of the launcher name
@@ -2176,7 +2175,7 @@ class Main:
                                         # Display corresponding game list found
                                         dialog = xbmcgui.Dialog()
                                         # Game selection
-                                        selectgame = dialog.select(__language__( 30078 ) % ( self.settings[ "datas_scraper" ] ), display)
+                                        selectgame = dialog.select(__language__( 30078 ) % ( self.settings[ "datas_scraper" ] ) + romdata["name"], display)
                                         if (selectgame == -1):
                                             results = []
                             if results:
