@@ -2551,6 +2551,8 @@ class Main:
                 roms[romid] = romdata
                 xbmc_notify(__language__( 30000 ), __language__( 30019 ) + " " + __language__( 30050 ),3000)
         self._save_launchers()
+        xbmc.executebuiltin("XBMC.ReloadSkin()")
+		
 
     def _add_new_category ( self ) :
         dialog = xbmcgui.Dialog()
